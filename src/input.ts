@@ -95,7 +95,9 @@ export class Input extends Writable {
         this.buffer = this.buffer.slice(bytes);
 
         for (let i = 0; i < sample.length; i += 2) {
-            sample.writeInt16LE(Math.floor(this.args.volume * sample.readInt16LE(i) / 100), i);
+            let increasedVolumeSample = Math.floor(this.args.volume * sample.readInt16LE(i) / 100);
+            let clampedSample = Math.min(Math.max(increasedVolumeSample, -32768), 32767);
+            sample.writeInt16LE(clampedSample, i);
         }
 
         return sample;
