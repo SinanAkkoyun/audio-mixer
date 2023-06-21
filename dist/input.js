@@ -10,7 +10,7 @@ class Input extends stream_1.Writable {
         if (args.sampleRate < 1) {
             args.sampleRate = 44100;
         }
-        if (args.volume < 0 || args.volume > 100) {
+        if (args.volume < 0) {
             args.volume = 100;
         }
         if (args.channels === 1) {
@@ -89,7 +89,7 @@ class Input extends stream_1.Writable {
         next();
     }
     setVolume(volume) {
-        this.args.volume = Math.max(Math.min(volume, 100), 0);
+        this.args.volume = Math.max(volume, 0);
     }
     getVolume() {
         return this.args.volume;

@@ -38,7 +38,7 @@ export class Input extends Writable {
             args.sampleRate = 44100;
         }
 
-        if (args.volume < 0 || args.volume > 100) {
+        if (args.volume < 0) {
             args.volume = 100;
         }
 
@@ -170,7 +170,7 @@ export class Input extends Writable {
      * @param volume The volume
      */
     public setVolume(volume: number) {
-        this.args.volume = Math.max(Math.min(volume, 100), 0);
+        this.args.volume = Math.max(volume, 0);
     }
 
     /**
